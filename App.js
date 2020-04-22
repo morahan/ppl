@@ -1,18 +1,27 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Aye Yo, My text is starting to show!</Text>
-    </View>
-  );
+  const [outputText, setOutputText] = useState('Aye Yo, My text is starting to show!')
+  // componentDidMount() {
+    return (
+      <View style={styles.container}>
+        <Text>{outputText}</Text>
+        <Button 
+          color='#ffff'
+          title="Change Text" 
+          onPress={() => setOutputText('Updated Text on page with button clickity click!')}
+        />
+        {/* <Button title="helloWorld" /> */}
+      </View>
+    );
+  // }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#44ace8',
     alignItems: 'center',
     justifyContent: 'center',
   },
