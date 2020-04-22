@@ -1,28 +1,41 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Text, View, TouchableOpacity, Button } from 'react-native';
+import styles from './styles/styles.js'
 
-export default function App() {
+function App() {
   const [outputText, setOutputText] = useState('Aye Yo, My text is starting to show!')
-  // componentDidMount() {
+  // console.log()
     return (
       <View style={styles.container}>
         <Text>{outputText}</Text>
         <Button 
-          color='#ffff'
+          // style={styles.button, styles.btn1}
+          backgroundColor='#fff'
+          color='#000'
           title="Change Text" 
           onPress={() => setOutputText('Updated Text on page with button clickity click!')}
         />
-        {/* <Button title="helloWorld" /> */}
+        {/* <TouchableOpacity style={styles.btn1}>
+          <Text>hello World </Text>
+        </TouchableOpacity>  */}
       </View>
     );
-  // }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#44ace8',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#44ace8',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   btn1: {
+//     backgroundColor: '#ffff',
+//     color: '#000',
+//     title: "Change Text",
+//     font: 25,
+//     onPress: () => setOutputText('Updated Text on page with button clickity click!')
+//   }
+// });
