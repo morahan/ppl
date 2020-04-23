@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
   },
 
   Btn: {
+    paddingTop: 100,
     backgroundColor: "green",
-
     color: "#ffff",
   },
 
@@ -43,7 +43,13 @@ const styles = StyleSheet.create({
     color: "#000",
     fontSize: 17,
     textAlign: 'center',
-    padding: 10,
+    paddingTop: "15%",
+  },
+
+  Text2: {
+    color: "#000",
+    fontSize: 17,
+    textAlign: 'center',
   },
 
   Input: {
