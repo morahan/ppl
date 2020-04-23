@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 //   },
 //   Text: {
 //       color: "#ffff",
-//   }  
+//   }  ggg
 });
 
 export default styles;

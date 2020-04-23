@@ -11,6 +11,7 @@ function App() {
         <Button 
           // style={styles.button, styles.btn1}
           backgroundColor='#fff'
+          // borderradius='20'
           color='#000'
           title="Change Text" 
           onPress={() => setOutputText('Updated Text on page with button clickity click!')}
