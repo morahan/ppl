@@ -1,42 +1,39 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, ScrollView, StyleSheet, Picker, Slider, Switch, TouchableOpacity, Button, Image } from 'react-native';
-import styles from './styles/styles.js'
+import { Text, View, TextInput, ScrollView, Picker, Slider, Switch, TouchableOpacity, Button, Image, SafeAreaView } from 'react-native';
+import styles from './styles/styles.js';
+import AddSong from './components/addSong.js';
+import LoginSpotify from './components/loginSpotify.js'
 
 function App(){
   const [outputText, setOutputText] = useState('Ready to get started!?')
+  const [listOfTracks, setListOfTracks] = useState([])
   // console.log()
 
   const logText = (input) => {
     console.log(input)
   }
     return (
-      <View style={styles.Screen}>
+      <SafeAreaView style={styles.Screen}>
         <View style={styles.head}>
           <Image source={require('./assets/icon.png')} style={styles.log, {height: 117, width: 117, alignSelf: "center"}}/>
           <Text style={styles.Welcome}>Welcome</Text>
         </View>
-
-        <View style={styles.LogIn}>
-          <Text style={styles.Text}>Sign Into Spotify</Text>
-          <TextInput 
-            placeholder='Email'
-            style={styles.Input}
-            onChangeText={logText}
-
-            
-          />
+        <LoginSpotify></LoginSpotify>
+        {/* <View style={styles.LogIn}>
           <View>
-            <Text style={styles.Text}>Log into Spotify Here below</Text>
+            <Text style={styles.Text}>{outputText}</Text>
+            <Button title="Sign In" onPress={() => setOutputText("Sign into Spotify Above")} style={styles.Btn} />
+
           </View>
-          <Text style={styles.Text}>Oops, I dont have an accout, im a dinosaur.</Text>
-        </View>
+    
+          <Text style={{ paddingTop: "10%" }, styles.Text}>Oops, I dont have an accout...  I'm a dinosaur.</Text>
+          <Text style={{ paddingTop: "10%" }, styles.Text}>I'm a dinosaur.</Text>
+        </View> */}
 
-        <View>
-          <Text style={styles.Text}>{outputText}</Text>
-          <Button title="button title here?" style={styles.Btn} onPress={() => setOutputText("Sign into Spotify Below")}/>
+        {/* <AddSong></AddSong> */}
 
-        </View>
-      </View>
+     
+      </SafeAreaView>
     );
 }
 
