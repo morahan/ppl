@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Button } from 'react-native';
+import { Text, View, TouchableOpacity, Button, Image } from 'react-native';
 import styles from './styles/styles.js'
 
-function App() {
+function App(){
   const [outputText, setOutputText] = useState('Ready to get started!?')
   // console.log()
     return (
       <View style={styles.container}>
         <View>
           <Text>Logo</Text>
+          <Image source={require('./assets/FreioLabsLogo.png')} style={{height: 75, width: 75}}/>
           <Text>Welcome</Text>
+        </View>
+
+        <View>
+          <Text>Sign Into Sportify</Text>
+          <View>
+
+          </View>
+          <Text>Oops, I dont have an accout, im a dinosaur.</Text>
         </View>
 
         <View>
