@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#44ace8',
     alignItems: 'center',
-    padding: "5%"
+    paddingTop: "10%",
   },
 
   Head: {
@@ -24,32 +24,40 @@ const styles = StyleSheet.create({
   },
 
   LogIn: {
+    marginTop: "10%",
     backgroundColor: 'whitesmoke',
-    // alignItems: 'bottom',
+    alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 17,
     height: '25%',
+    width: "50%"
   },
 
   Btn: {
-    shadowColor: 'whitesmoke',
+    backgroundColor: "green",
+
+    color: "#ffff",
   },
 
   Text: {
     color: "#000",
+    fontSize: 17,
     textAlign: 'center',
+    padding: 10,
   },
 
   Input: {
     alignItems: 'center',
     width: "80%",
+    fontSize: 23,
     borderRadius: 10,
     borderColor: 'black',
     borderWidth: 2,
-    padding: 10,
-    padding: '10%',
+    height: "25%",
+    // padding: 10,
+    // padding: '10%',
     alignSelf: 'center',
-  }
+  },
 });
 
 export default styles;
