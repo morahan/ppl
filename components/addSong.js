@@ -16,7 +16,7 @@ function addSong() {
             <TextInput
                 placeholder='track name'
                 style={styles.Input}
-                onChangeText={searchedSong}
+                onChangeText={songSearchHandler}
             />
             <Button title="search" style={styles.Btn} />
         </View>
