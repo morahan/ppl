@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, Button, Image } from 'react-native';
+import { Text, View, TextInput, ScrollView, StyleSheet, Picker, Slider, Switch, TouchableOpacity, Button, Image } from 'react-native';
 import styles from './styles/styles.js'
 
 function App(){
@@ -7,18 +7,19 @@ function App(){
   // console.log()
     return (
       <View style={styles.container}>
-        <View>
-          <Text>Logo</Text>
-          <Image source={require('./assets/FreioLabsLogo.png')} style={{height: 75, width: 75}}/>
-          <Text>Welcome</Text>
+        <View style={{padding: 25}}>
+          <Text style={styles.Text}>Logo</Text>
+          <Image source={require('./assets/icon.png')} style={{height: 117, width: 117}}/>
+          <Text style={styles.Text}>Welcome</Text>
         </View>
 
         <View>
-          <Text>Sign Into Sportify</Text>
+          <Text style={styles.Text}>Sign Into Spotify</Text>
+          <TextInput placeholder={'Email'}/>
           <View>
-
+            <Text style={styles.Text}>Log into Spotify Here</Text>
           </View>
-          <Text>Oops, I dont have an accout, im a dinosaur.</Text>
+          <Text style={styles.Text}>Oops, I dont have an accout, im a dinosaur.</Text>
         </View>
 
         <View>
@@ -28,7 +29,7 @@ function App(){
             color="#000"
             title="Change Text"
             onPress={() =>
-              setOutputText("Get started by Signing into Spotify Below")
+              setOutputText("Sign into Spotify Below")
             }
           />
 

@@ -11,9 +11,11 @@ const styles = StyleSheet.create({
 //     background: '#smokewhite',
 //     color: '#ffff',
 //   },
-//   Text: {
-//       color: "#ffff",
-//   }  ggg
+  Text: {
+    color: "#ffff",
+    textAlign: 'center',
+
+  }
 });
 
 export default styles;
