@@ -3,22 +3,27 @@ import { Text, View, TouchableOpacity, Button } from 'react-native';
 import styles from './styles/styles.js'
 
 function App() {
-  const [outputText, setOutputText] = useState('Aye Yo, My text is starting to show!')
+  const [outputText, setOutputText] = useState('Ready to get started!?')
   // console.log()
     return (
       <View style={styles.container}>
-        <Text>{outputText}</Text>
-        <Button 
-          // style={styles.button, styles.btn1}
-          backgroundColor='#fff'
-          // borderradius='20'
-          color='#000'
-          title="Change Text" 
-          onPress={() => setOutputText('Updated Text on page with button clickity click!')}
-        />
-        {/* <TouchableOpacity style={styles.btn1}>
-          <Text>hello World </Text>
-        </TouchableOpacity>  */}
+        <View>
+          <Text>Logo</Text>
+          <Text>Welcome</Text>
+        </View>
+
+        <View>
+          <Text>{outputText}</Text>
+          <Button
+            backgroundColor="#fff"
+            color="#000"
+            title="Change Text"
+            onPress={() =>
+              setOutputText("Get started by Signing into Spotify Below")
+            }
+          />
+
+        </View>
       </View>
     );
 }
