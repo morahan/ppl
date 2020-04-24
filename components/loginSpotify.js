@@ -8,15 +8,14 @@ function LoginSpotify() {
         setSignIn('Signing In...');
     }
     return (
-            <View style={styles.LogIn}>
-                <View>
+        <View style={styles.LogIn}>
+            <View>
                 <Text style={styles.Text}>{signIn}</Text>
                 <Button style={styles.Btn} title='Sign In' onPress={clickHandler} />
-                </View>
-
-                <Text style={styles.Text}>Oops, I dont have an accout. </Text>
-                <Text style={styles.Text2}>I'm a dinosaur...</Text>
             </View>
+            <Text style={styles.Text}>Oops, I dont have an accout. </Text>
+            <Text style={styles.Text2}>I'm a dinosaur...</Text>
+        </View>
     );
 }
 
