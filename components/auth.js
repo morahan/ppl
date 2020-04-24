@@ -1,4 +1,4 @@
-import obj from  '../config.js';
+var obj = require('../config.js');
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var cors = require('cors');
@@ -6,8 +6,8 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
 var client_id = obj.spotify.client_id; // Your client id
-var client_secret = 'CLIENT_SECRET'; // Your secret
-var redirect_uri = 'REDIRECT_URI'; // Your redirect uri
+var client_secret = obj.spotify.client_secret_id; // Your secret
+var redirect_uri = obj.spotify.redirect_uri; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
@@ -33,20 +33,21 @@ app.use(express.static(__dirname + '/public'))
     .use(cookieParser());
 
 app.get('/login', function (req, res) {
+    res.send("working ==== ")
+    // var state = generateRandomString(16);
+    // res.cookie(stateKey, state);
 
-    var state = generateRandomString(16);
-    res.cookie(stateKey, state);
-
-    // your application requests authorization
-    var scope = 'user-read-private user-read-email';
-    res.redirect('https://accounts.spotify.com/authorize?' +
-        querystring.stringify({
-            response_type: 'code',
-            client_id: client_id,
-            scope: scope,
-            redirect_uri: redirect_uri,
-            state: state
-        }));
+    // // your application requests authorization
+    // var scope = 'user-read-private user-read-email playlist-read-collaborative';
+    // res.redirect('https://accounts.spotify.com/authorize?' +
+    //     querystring.stringify({
+    //         response_type: 'code',
+    //         client_id: client_id,
+    //         scope: scope,
+    //         redirect_uri: redirect_uri,
+    //         state: state
+    //     })
+    // );
 });
 
 app.get('/callback', function (req, res) {
@@ -135,18 +136,18 @@ app.get('/refresh_token', function (req, res) {
     });
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+console.log('Listening on 19000');
+app.listen(19000);
 
 // ==== my code below
-app.get('/login', function (req, res) {
-    var scopes = 'user-read-private user-read-email playlist-read-collaborative';
-    res.redirect('https://accounts.spotify.com/authorize' +
-        '?response_type=code' +
-        '&client_id=' + obj.spotify.my_client_id +
-        (scopes ? '&scope=' + encodeURIComponent(obj.spotify.scopes) : '') +
-        '&redirect_uri=' + encodeURIComponent(obj.spotify.encoded_redirect_uri));
-});
+// app.get('/login', function (req, res) {
+//     var scopes = 'user-read-private user-read-email playlist-read-collaborative';
+//     res.redirect('https://accounts.spotify.com/authorize' +
+//         '?response_type=code' +
+//         '&client_id=' + obj.spotify.my_client_id +
+//         (scopes ? '&scope=' + encodeURIComponent(obj.spotify.scopes) : '') +
+//         '&redirect_uri=' + encodeURIComponent(obj.spotify.encoded_redirect_uri));
+// });
 
 
 // 'https://accounts.spotify.com/authorize?response_type=code&client_id=a47686c131df407ba2364306dd25b6c8&scope=user-read-private-user-read-email-playlist-read-collaborative + encodeURIComponent(obj.spotify.scopes) : '') +'&redirect_uri=' + encodeURIComponent(obj.spotify.encoded_redirect_uri)
@@ -156,13 +157,13 @@ app.get('/login', function (req, res) {
 // 2.0 url =
 // https://accounts.spotify.com/en/authorize?response_type=code&client_id=a47686c131df407ba2364306dd25b6c8&scope=playlist-read-collaborative&redirect_uri=https:%2F%2Ffreiolabs.com
 
-curl -H "Authorization: Basic YTQ3Njg2YzEzMWRmNDA3YmEyMzY0MzA2ZGQyNWI2Yzg6Y2U5YTE0MWM4YTMwNDQ0Njk1YTZjZDc0YzIxZTIzNzI=" -d grant_type=AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A -d refresh_token=AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A https://accounts.spotify.com/api/token
-curl -H "Authorization: Basic YTQ3Njg2YzEzMWRmNDA3YmEyMzY0MzA2ZGQyNWI2Yzg6Y2U5YTE0MWM4YTMwNDQ0Njk1YTZjZDc0YzIxZTIzNzI=" -d grant_type=refresh_token -d refresh_token=AQBrzk5Hrvabt_6zglVkn9nv9qhxJNbdpCTP33E6l7I-dA_gCElQW59vuJjyohK3eysb3YVAvNQllvQHMA-gllHVMYS6_44LJM8p7DNs6JLG-3buP2ubWZWs9ZJpbCMBF92qHDYWBVw99tFZcJ0E87b3A7F-HRsKy3Kgl1DIX4msc6zDUglFv7swW8WwFvjsaCY_hwWqR18H-zG80Yj1vZKvO-_qgY4M https://accounts.spotify.com/api/token
-curl -H "Authorization: Basic YTQ3Njg2YzEzMWRmNDA3YmEyMzY0MzA2ZGQyNWI2Yzg6Y2U5YTE0MWM4YTMwNDQ0Njk1YTZjZDc0YzIxZTIzNzI=" -d grant_type=authorization_code -d code=AQBrzk5Hrvabt_6zglVkn9nv9qhxJNbdpCTP33E6l7I-dA_gCElQW59vuJjyohK3eysb3YVAvNQllvQHMA-gllHVMYS6_44LJM8p7DNs6JLG-3buP2ubWZWs9ZJpbCMBF92qHDYWBVw99tFZcJ0E87b3A7F-HRsKy3Kgl1DIX4msc6zDUglFv7swW8WwFvjsaCY_hwWqR18H-zG80Yj1vZKvO-_qgY4M https://accounts.spotify.com/api/token
+// curl -H "Authorization: Basic YTQ3Njg2YzEzMWRmNDA3YmEyMzY0MzA2ZGQyNWI2Yzg6Y2U5YTE0MWM4YTMwNDQ0Njk1YTZjZDc0YzIxZTIzNzI=" -d grant_type=AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A -d refresh_token=AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A https://accounts.spotify.com/api/token
+// curl -H "Authorization: Basic YTQ3Njg2YzEzMWRmNDA3YmEyMzY0MzA2ZGQyNWI2Yzg6Y2U5YTE0MWM4YTMwNDQ0Njk1YTZjZDc0YzIxZTIzNzI=" -d grant_type=refresh_token -d refresh_token=AQBrzk5Hrvabt_6zglVkn9nv9qhxJNbdpCTP33E6l7I-dA_gCElQW59vuJjyohK3eysb3YVAvNQllvQHMA-gllHVMYS6_44LJM8p7DNs6JLG-3buP2ubWZWs9ZJpbCMBF92qHDYWBVw99tFZcJ0E87b3A7F-HRsKy3Kgl1DIX4msc6zDUglFv7swW8WwFvjsaCY_hwWqR18H-zG80Yj1vZKvO-_qgY4M https://accounts.spotify.com/api/token
+// curl -H "Authorization: Basic YTQ3Njg2YzEzMWRmNDA3YmEyMzY0MzA2ZGQyNWI2Yzg6Y2U5YTE0MWM4YTMwNDQ0Njk1YTZjZDc0YzIxZTIzNzI=" -d grant_type=authorization_code -d code=AQBrzk5Hrvabt_6zglVkn9nv9qhxJNbdpCTP33E6l7I-dA_gCElQW59vuJjyohK3eysb3YVAvNQllvQHMA-gllHVMYS6_44LJM8p7DNs6JLG-3buP2ubWZWs9ZJpbCMBF92qHDYWBVw99tFZcJ0E87b3A7F-HRsKy3Kgl1DIX4msc6zDUglFv7swW8WwFvjsaCY_hwWqR18H-zG80Yj1vZKvO-_qgY4M https://accounts.spotify.com/api/token
 
 
-refresh_token = AQBrzk5Hrvabt_6zglVkn9nv9qhxJNbdpCTP33E6l7I-dA_gCElQW59vuJjyohK3eysb3YVAvNQllvQHMA-gllHVMYS6_44LJM8p7DNs6JLG-3buP2ubWZWs9ZJpbCMBF92qHDYWBVw99tFZcJ0E87b3A7F-HRsKy3Kgl1DIX4msc6zDUglFv7swW8WwFvjsaCY_hwWqR18H-zG80Yj1vZKvO-_qgY4M
+// refresh_token = AQBrzk5Hrvabt_6zglVkn9nv9qhxJNbdpCTP33E6l7I-dA_gCElQW59vuJjyohK3eysb3YVAvNQllvQHMA-gllHVMYS6_44LJM8p7DNs6JLG-3buP2ubWZWs9ZJpbCMBF92qHDYWBVw99tFZcJ0E87b3A7F-HRsKy3Kgl1DIX4msc6zDUglFv7swW8WwFvjsaCY_hwWqR18H-zG80Yj1vZKvO-_qgY4M
 
-AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A
+// AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A
 
-AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A
+// AQC0_cGk9Xed_PdqG5OWu9rk4738dxZahS0GjAx0uRIe5ihSU266ywNZwwbN8p_rDONisXCgKQvJuduoDGkzt44u0qFzlWzr-xjxiifbzfM7fy7InRyXd_JCjyK_NPqyZBuQzrFijA61CF2M_vBUkG5tZNmkVw-rMUHkaTWB58UvaFTyTJLqVWa93KTxI8hFN27iBES6Dnsaln1lhB4HqcON4fH15z9A
