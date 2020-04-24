@@ -7,7 +7,7 @@ function LoginSpotify() {
     const [signIn, setSignIn] = useState('Log Into Spotify');
     const clickHandler = () => {
         setSignIn('Signing In...');
-        axios.get('http://localhost:3000/login')
+        axios.get('http://ec2-3-21-185-1.us-east-2.compute.amazonaws.com/login')
            .then(response => {
                Linking.canOpenURL(response.data).then(supported => {
                    if (supported) {
