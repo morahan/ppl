@@ -8,7 +8,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "cors": "^2.8.5",
     "expo": "~37.0.3",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.3",
     "react": "~16.9.0",
     "react-devtools": "^4.6.0",
     "react-dom": "~16.9.0",
