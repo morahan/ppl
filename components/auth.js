@@ -33,12 +33,21 @@ app.use(express.static(__dirname + '/public'))
     .use(cookieParser());
 
 app.get('/login', function (req, res) {
-    res.send("working ==== ")
-    // var state = generateRandomString(16);
-    // res.cookie(stateKey, state);
+    // res.send("working ==== ")
+    var state = generateRandomString(16);
+    res.cookie(stateKey, state);
 
-    // // your application requests authorization
-    // var scope = 'user-read-private user-read-email playlist-read-collaborative';
+    // your application requests authorization
+    var scope = 'user-read-private user-read-email playlist-read-collaborative';
+    res.send('https://accounts.spotify.com/authorize?' +
+        querystring.stringify({
+            response_type: 'code',
+            client_id: client_id,
+            scope: scope,
+            redirect_uri: redirect_uri,
+            state: state
+        })
+    );
     // res.redirect('https://accounts.spotify.com/authorize?' +
     //     querystring.stringify({
     //         response_type: 'code',
@@ -136,8 +145,8 @@ app.get('/refresh_token', function (req, res) {
     });
 });
 
-console.log('Listening on 19000');
-app.listen(19000);
+console.log('Listening on 3000');
+app.listen(3000);
 
 // ==== my code below
 // app.get('/login', function (req, res) {

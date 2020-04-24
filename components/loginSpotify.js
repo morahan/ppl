@@ -7,10 +7,17 @@ function LoginSpotify() {
     const [signIn, setSignIn] = useState('Log Into Spotify');
     const clickHandler = () => {
         setSignIn('Signing In...');
-        axios.get('/login')
-          .then(responce => console.log(responce.data))
+        axios.get('http://localhost:3000/login')
+           .then(response => {
+               Linking.canOpenURL(response.data).then(supported => {
+                   if (supported) {
+                       Linking.openURL(response.data);
+                   } else {
+                       console.log("Don't know how to open URI: " + response.data);
+                   }
+               });
+            })
           .catch(err => console.log(err))
-
     }
     return (
         <View style={styles.LogIn}>
