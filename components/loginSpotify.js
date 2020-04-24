@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { Text, View, TextInput, ScrollView, Picker, Slider, Switch, TouchableOpacity, Button, Image, SafeAreaView } from 'react-native';
 import styles from '../styles/styles.js';
+import axios from 'axios';
 
 function LoginSpotify() {
     const [signIn, setSignIn] = useState('Log Into Spotify');
     const clickHandler = () => {
         setSignIn('Signing In...');
+        axios.get('/login')
+          .then(responce => console.log(responce.data))
+          .catch(err => console.log(err))
+
     }
     return (
         <View style={styles.LogIn}>
