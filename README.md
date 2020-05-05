@@ -1,4 +1,4 @@
-#PPL
+# Party Play List
 
 ## Login in with Spotify OAuth
 
